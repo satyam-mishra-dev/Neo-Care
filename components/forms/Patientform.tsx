@@ -5,7 +5,19 @@ import { useForm } from "react-hook-form"
 import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import {Form} from "@/components/ui/form"
- 
+import CustomForm from "@/components/ui/CustomForm";
+
+export enum FieldType {
+    INPUT = 'input',
+    TEXTAREA = 'textarea',
+    PHONE_INPUT = 'phoneInput',
+    CHECKBOX = 'checkbox',
+    DATE_PICKER = 'datePicker',
+    SELECT = 'select',
+    SKELETON = 'skeleton',
+}
+
+
 const formSchema = z.object({
   username: z.string().min(2, {
     message: "Username must be at least 2 characters.",
@@ -35,7 +47,15 @@ const  Patientform=()=> {
                     <h1 className= "header text-red-300 ">Hi there 👋</h1>
                     <p className="text-dark-700">Schedule your appointment </p>
                 </section>
-                
+                <CustomForm 
+                    fieldType = {FieldType.INPUT}
+                    control ={form.control}
+                    name = "name"
+                    label ="Full Name"
+                    placeholder = "Satyam"
+                    iconSrc ="/assets/icons/user.svg"
+                    iconAlt = "user"
+                />
                 <Button type="submit">Submit</Button>
               </form>
             </Form>
