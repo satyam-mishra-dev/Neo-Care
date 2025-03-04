@@ -15,6 +15,7 @@ export enum FieldType {
     DATE_PICKER = 'datePicker',
     SELECT = 'select',
     SKELETON = 'skeleton',
+
 }
 
 
@@ -55,6 +56,22 @@ const  Patientform=()=> {
                     placeholder = "Satyam"
                     iconSrc ="/assets/icons/user.svg"
                     iconAlt = "user"
+                />
+                <CustomForm 
+                    fieldType = {FieldType.INPUT}
+                    control ={form.control}
+                    name = "email"
+                    label ="E-mail"
+                    placeholder = "abc@gmail.com"
+                    iconSrc ="/assets/icons/email.svg"
+                    iconAlt = "email"
+                />
+                <CustomForm 
+                    fieldType = {FieldType.PHONE_INPUT}
+                    control ={form.control}
+                    name = "phone-number"
+                    label ="Phone Number"
+                    placeholder = "+1-99933399393"
                 />
                 <Button type="submit">Submit</Button>
               </form>
