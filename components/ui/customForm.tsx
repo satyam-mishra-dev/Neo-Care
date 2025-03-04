@@ -10,7 +10,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { FieldType } from "@/components/forms/Patientform"; // ✅ Import Enum
-
+import PhoneInput from 'react-phone-number-input'
+import 'react-phone-number-input/style.css'
 interface CustomProps {
   control: Control<any>;
   fieldType: FieldType;
@@ -50,7 +51,15 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
         case FieldType.PHONE_INPUT:
             return (
                 <FormControl>
-                    <PhoneInput />
+                    <PhoneInput
+                    defaultCountry ="US"
+                    placeholder ={placeholder}
+                    international 
+                    withCountryCallingCode
+                    value ={field.value as E164Number | undefined}
+                    onChange ={field.onChange}
+                    className ="input-phone"
+                     />
                 </FormControl>
             );
     }
