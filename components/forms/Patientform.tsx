@@ -53,7 +53,7 @@ const  Patientform=()=> {
                     control ={form.control}
                     name = "name"
                     label ="Full Name"
-                    placeholder = "Satyam"
+                    placeholder = "Full Name"
                     iconSrc ="/assets/icons/user.svg"
                     iconAlt = "user"
                 />

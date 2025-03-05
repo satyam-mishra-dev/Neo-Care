@@ -16,7 +16,7 @@ export default function Home() {
         <Patientform />
         <div className="text-14-regular">
           <p className ="justify-items-end text-dark-600 xl:text-left">© 2025 NeoCare</p>
-          <Link href="/?admin=true" className="text-green-500">
+          <Link href="/?admin=true" className="text-green-500 xl:text-right">
             Admin
           </Link>
         </div>
