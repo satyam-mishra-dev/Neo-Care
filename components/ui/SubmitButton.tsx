@@ -6,7 +6,7 @@ interface Buttonprops {
 }
 import {Button} from "@/components/ui/button"
 import Image from "next/image"
-const SubmitButton = (isLoading,className , children) => {
+const SubmitButton = ({ isLoading, className, children }: Buttonprops) => {
     return(
         <Button type="submit" disabled={isLoading} className={className ?? 'shad-primary-btn w-full'}>
             {isLoading ? (

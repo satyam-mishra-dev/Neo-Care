@@ -7,7 +7,8 @@ import { Button } from "@/components/ui/button"
 import {Form} from "@/components/ui/form"
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton"
-import useSate from "react";
+import { useState } from "react";
+import formValidation from "@/lib/Validation"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -20,26 +21,36 @@ export enum FieldType {
 }
 
 
-const formSchema = z.object({
-  username: z.string().min(2, {
-    message: "Username must be at least 2 characters.",
-  }),
-})
+
  
 const  Patientform=()=> {
   const[isLoading,setIsLoading] = useState(false);
   // 1. Define your form.
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<z.infer<typeof formValidation>>({
+    resolver: zodResolver(formValidation),
     defaultValues: {
       username: "",
+      name : "",
+      email:"",
+      phone: "", 
     },
   })
  
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
+  async function onSubmit(values: z.infer<typeof formValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
+    setIsLoading(true);
+    try{
+      const userData = {name , email , phone};
+      const user = await createUser(userData);
+      if(user){
+        
+      }
+    }
+    catch(err){
+      console.log(err);
+    }
     console.log(values)
   }
 
