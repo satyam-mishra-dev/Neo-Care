@@ -10,6 +10,7 @@ import SubmitButton from "@/components/ui/SubmitButton"
 import { useState } from "react";
 import formValidation from "@/lib/Validation"
 import {useRouter} from "next/navigation"
+import {createUser} from "@/lib/actions/patient.actions"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
