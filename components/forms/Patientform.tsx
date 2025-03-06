@@ -9,6 +9,7 @@ import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton"
 import { useState } from "react";
 import formValidation from "@/lib/Validation"
+import {useRouter} from "next/navigation"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -26,6 +27,7 @@ export enum FieldType {
 const  Patientform=()=> {
   const[isLoading,setIsLoading] = useState(false);
   // 1. Define your form.
+  const router = useRouter();
   const form = useForm<z.infer<typeof formValidation>>({
     resolver: zodResolver(formValidation),
     defaultValues: {
@@ -37,7 +39,7 @@ const  Patientform=()=> {
   })
  
   // 2. Define a submit handler.
-  async function onSubmit(values: z.infer<typeof formValidation>) {
+  async function onSubmit({name,email,phone}: z.infer<typeof formValidation>) {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     setIsLoading(true);
@@ -45,7 +47,7 @@ const  Patientform=()=> {
       const userData = {name , email , phone};
       const user = await createUser(userData);
       if(user){
-        
+        router.push('/patients/${user.$id}/register')
       }
     }
     catch(err){
