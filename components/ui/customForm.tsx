@@ -2,6 +2,7 @@
 import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
 import Image from "next/image"
+import DatePicker from "react-datepicker"
 import {
   FormControl,
   FormField,
@@ -62,7 +63,23 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
                      />
                 </FormControl>
             );
+        case FieldType.DATE_PICKER:
+          return(
+            <div className="flex rounded-md border border-dark-500 bg-dark-400">
+              <Image
+              src="/assets/icons/calendar.svg"
+              height={24}
+              width={24}
+              alt ="Calendar"
+              className="ml-12"
+              />
+              <FormControl>
+                <DatePicker selected={field.value} onChange={(date)=>field.onChange(date)}/>
+              </FormControl>
+            </div>
+          )
     }
+
 }
 const CustomForm = (props: CustomProps) => {
     const {control ,fieldType, name ,label} =props;

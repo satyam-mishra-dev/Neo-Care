@@ -11,7 +11,9 @@ import formValidation from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import {FieldType}  from "./Patientform"
-import { RadioGroup } from "@radix-ui/react-radio-group"
+import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group"
+import {genderOptions} from "@/constants/index"
+import { Label } from "@radix-ui/react-label"
 const Registerform = ({user}:{user:User}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -100,7 +102,16 @@ const Registerform = ({user}:{user:User}) => {
                       label="Gender"
                       renderSkeleton={(field)=>(
                         <FormControl>
-                            <RadioGroup></RadioGroup>
+                            <RadioGroup className="flex h-11 gap-6 xl:justify-between" onValueChange={field.onChange} defaultValue={field.value}>
+                                {genderOptions.map((option)=>(
+                                    <div key ={option} className="radio-group">
+                                        <RadioGroupItem value={option} id={option}/>
+                                        <Label htmlFor={option} className="cursor-pointer">
+                                            {option}
+                                        </Label>
+                                    </div>
+  ))}
+                            </RadioGroup>
                         </FormControl>
                       )}
                     />
