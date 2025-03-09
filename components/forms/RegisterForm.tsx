@@ -3,7 +3,7 @@
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
-import { Form } from "@/components/ui/form"
+import { Form, FormControl } from "@/components/ui/form"
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton"
 import { useState } from "react";
@@ -44,10 +44,13 @@ const Registerform = ({user}:{user:User}) => {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-12 flex-1">
         <section className="mb-12 space-y-4">
-          <h1 className="header text-red-300">Hi there 👋</h1>
-          <p className="text-dark-700">Schedule your appointment</p>
+          <h1 className="header text-red-300">Welcome !! 👋</h1>
+          <p className="text-dark-700">Let us know more about you!!</p>
+        </section>
+        <section className="mb-12 space-y-6">
+          <div className ="mb-9 space-y-1"><h2 className="text-dark-700 sub-header">Personal Information</h2></div>
         </section>
 
         <CustomForm 
@@ -60,7 +63,47 @@ const Registerform = ({user}:{user:User}) => {
           iconAlt="user"
         />
 
-        
+        <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomForm 
+                      fieldType={FieldType.INPUT}
+                      control={form.control}
+                      name="email"
+                      label="E-mail"
+                      placeholder="abc@gmail.com"
+                      iconSrc="/assets/icons/email.svg"
+                      iconAlt="email"
+                    />
+            
+                    <CustomForm 
+                      fieldType={FieldType.PHONE_INPUT}
+                      control={form.control}
+                      name="phone"  // ✅ Fixed name
+                      label="Phone Number"
+                      placeholder="+1-99933399393"
+                    />
+        </div>
+        <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomForm 
+                      fieldType={FieldType.DATE_PICKER}
+                      control={form.control}
+                      name="Birth Date"
+                      label="Date of Birth"
+                      placeholder="28-12-2005"
+                      
+                    />
+            
+                    <CustomForm 
+                      fieldType={FieldType.SKELETON}
+                      control={form.control}
+                      name="Gender"  // ✅ Fixed name
+                      label="Gender"
+                      renderSkeleton={(field)=>(
+                        <FormControl>
+                            
+                        </FormControl>
+                      )}
+                    />
+        </div>
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
