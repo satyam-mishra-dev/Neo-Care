@@ -10,18 +10,8 @@ import { useState } from "react";
 import formValidation from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
-
-export enum FieldType {
-    INPUT = 'input',
-    TEXTAREA = 'textarea',
-    PHONE_INPUT = 'phoneInput',
-    CHECKBOX = 'checkbox',
-    DATE_PICKER = 'datePicker',
-    SELECT = 'select',
-    SKELETON = 'skeleton',
-}
-
-const Registerform = () => {
+import {FieldType}  from "./Patientform"
+const Registerform = ({user}:{user:User}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -70,23 +60,7 @@ const Registerform = () => {
           iconAlt="user"
         />
 
-        <CustomForm 
-          fieldType={FieldType.INPUT}
-          control={form.control}
-          name="email"
-          label="E-mail"
-          placeholder="abc@gmail.com"
-          iconSrc="/assets/icons/email.svg"
-          iconAlt="email"
-        />
-
-        <CustomForm 
-          fieldType={FieldType.PHONE_INPUT}
-          control={form.control}
-          name="phone"  // ✅ Fixed name
-          label="Phone Number"
-          placeholder="+1-99933399393"
-        />
+        
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
