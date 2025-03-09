@@ -11,6 +11,7 @@ import formValidation from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import {FieldType}  from "./Patientform"
+import { RadioGroup } from "@radix-ui/react-radio-group"
 const Registerform = ({user}:{user:User}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -99,7 +100,7 @@ const Registerform = ({user}:{user:User}) => {
                       label="Gender"
                       renderSkeleton={(field)=>(
                         <FormControl>
-                            
+                            <RadioGroup></RadioGroup>
                         </FormControl>
                       )}
                     />
