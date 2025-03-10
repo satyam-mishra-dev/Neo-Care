@@ -24,7 +24,7 @@ interface CustomProps {
   disabled?: boolean;
 }
 const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
-    const {fieldType, iconSrc ,iconAlt ,placeholder} =props;
+    const {fieldType, iconSrc ,iconAlt ,placeholder,showTimeSelect,dateFormat,renderSkeleton} =props;
     switch (fieldType){
         case FieldType.INPUT:
             
@@ -74,10 +74,19 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
               className="ml-12"
               />
               <FormControl>
-                <DatePicker selected={field.value} onChange={(date)=>field.onChange(date)}/>
+                <DatePicker selected={field.value} onChange={(date)=>field.onChange(date)}
+                  dateFormat={dateFormat ?? 'MM/dd/yyyy'}
+                  showTimeSelect={showTimeSelect ?? false}
+                  timeInputLabel = "Time"
+                  wrapperClassName="date-picker"
+                  />
               </FormControl>
             </div>
           )
+        case FieldType.SKELETON:
+          return (
+            renderSkeleton ? renderSkeleton(field) : null
+          );
     }
 
 }
