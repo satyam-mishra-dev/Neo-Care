@@ -95,26 +95,42 @@ const Registerform = ({user}:{user:User}) => {
                       
                     />
             
-                    <CustomForm 
-                      fieldType={FieldType.SKELETON}
-                      control={form.control}
-                      name="Gender"  // ✅ Fixed name
-                      label="Gender"
-                      renderSkeleton={(field)=>(
-                        <FormControl>
-                            <RadioGroup className="flex h-11 gap-6 xl:justify-between" onValueChange={field.onChange} defaultValue={field.value}>
-                                {genderOptions.map((option)=>(
-                                    <div key ={option} className="radio-group">
-                                        <RadioGroupItem value={option} id={option}/>
-                                        <Label htmlFor={option} className="cursor-pointer">
-                                            {option}
-                                        </Label>
-                                    </div>
-  ))}
-                            </RadioGroup>
-                        </FormControl>
-                      )}
-                    />
+            <CustomForm 
+  fieldType={FieldType.SKELETON}
+  control={form.control}
+  name="gender"
+  label="Gender"
+  renderSkeleton={(field) => (
+    <FormControl>
+      <RadioGroup 
+        className="flex h-11 gap-6 xl:justify-between" 
+        onValueChange={field.onChange}
+        defaultValue={field.value } 
+      >
+        {genderOptions.map((option) => (
+          <div key={option} className="radio-group ">
+            
+            <RadioGroupItem 
+              value={option} 
+              id={option} 
+            />
+
+            
+            <Label 
+              htmlFor={option} 
+              className="cursor-pointer"
+            >
+              {option}
+            </Label>
+          </div>
+        ))}
+      </RadioGroup>
+    </FormControl>
+  )}
+/>
+
+
+
         </div>
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>

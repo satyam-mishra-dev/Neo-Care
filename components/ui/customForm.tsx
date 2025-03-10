@@ -2,7 +2,8 @@
 import { Input } from "@/components/ui/input";
 import { Control } from "react-hook-form";
 import Image from "next/image"
-import DatePicker from "react-datepicker"
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {
   FormControl,
   FormField,

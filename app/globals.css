@@ -348,3 +348,23 @@
 .PhoneInputInput::placeholder {
   color: #1a1d21;
 }
+.radio-group [data-state="checked"] {
+  background-color: #24ae7c; /* Green when selected */
+  border-radius: 50%;
+}
+
+.radio-group input[type="radio"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radio-group input[type="radio"]:checked {
+  background-color: white;
+  border-color: white;
+}
