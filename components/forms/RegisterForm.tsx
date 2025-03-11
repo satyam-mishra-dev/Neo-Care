@@ -128,10 +128,51 @@ const Registerform = ({user}:{user:User}) => {
     </FormControl>
   )}
 />
-
-
-
+ </div>
+        <div className="flex flex-col gap-6 xl:flex-row">
+        <CustomForm 
+          fieldType={FieldType.INPUT}
+          control={form.control}
+          name="address"
+          label="Address"
+          placeholder="23rd Street, Alabama"
+        />
+        <CustomForm 
+          fieldType={FieldType.INPUT}
+          control={form.control}
+          name="occupation"
+          label="Occupation"
+          placeholder="Software Developer"
+        />
         </div>
+        <div className="flex flex-col gap-6 xl:flex-row">
+        <CustomForm 
+          fieldType={FieldType.INPUT}
+          control={form.control}
+          name="emergencyContactName"
+          label="Emergency Contact Name"
+          placeholder="Guardian's Name"
+        />
+        <CustomForm 
+          fieldType={FieldType.PHONE_INPUT}
+          control={form.control}
+          name="emergencyContactNumber"
+          label="Emergency Contact Number"
+          placeholder="+123-111-222-4444"
+        />
+        </div>
+        <section className="mb-12 space-y-6">
+          <div className ="mb-9 space-y-1"><h2 className="text-dark-700 sub-header">Medical Information</h2></div>
+        </section>
+        <CustomForm 
+          fieldType={FieldType.SELECT}
+          control={form.control}
+          name="primaryPhysician"
+          label="Primary Physician"
+          placeholder="Primary Physician"
+        >
+            {["Devi Shetty", "Naresh Trehan", "Randeep Guleria", "Mukesh Hariawala", "Sudhansu Bhattacharyya"]}
+        </CustomForm>
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
