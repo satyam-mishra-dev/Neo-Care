@@ -4,6 +4,7 @@ import { Control } from "react-hook-form";
 import Image from "next/image"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import {Textarea} from "./textarea"
 import {
   FormControl,
   FormField,
@@ -107,7 +108,10 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
         case FieldType.TEXTAREA:
           return(
             <FormControl>
-              
+              <Textarea
+              placeholder={placeholder}
+              className="shad-textArea"
+              disabled={props.disabled}/>
             </FormControl>
 
           );

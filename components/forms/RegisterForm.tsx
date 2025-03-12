@@ -225,6 +225,21 @@ const RegisterForm = ({ user }: { user: User }) => {
               placeholder="Ibuprofen"
             />
           </div>
+          <div className="flex flex-col gap-6 xl:flex-row">
+            <CustomForm
+              fieldType={FieldType.TEXTAREA}
+              control={form.control}
+              name="familyMedicalHistory"
+              label="Family Medical History"
+            />
+            <CustomForm
+              fieldType={FieldType.TEXTAREA}
+              control={form.control}
+              name="currentMedication"
+              label="Current Medication (If any)"
+              placeholder="Ibuprofen"
+            />
+          </div>
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
       </Form>
