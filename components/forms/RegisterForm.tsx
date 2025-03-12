@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { FieldType } from "./Patientform";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { genderOptions, Doctors } from "@/constants/index";
+import { genderOptions, Doctors,IdentificationTypes } from "@/constants/index";
 import { Label } from "@radix-ui/react-label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
@@ -230,16 +230,56 @@ const RegisterForm = ({ user }: { user: User }) => {
               fieldType={FieldType.TEXTAREA}
               control={form.control}
               name="familyMedicalHistory"
-              label="Family Medical History"
+              label="Family Medical History (If any)"
             />
             <CustomForm
               fieldType={FieldType.TEXTAREA}
               control={form.control}
-              name="currentMedication"
-              label="Current Medication (If any)"
+              name="pastMedicalHistory"
+              label="Past Medical History (If any)"
               placeholder="Ibuprofen"
             />
           </div>
+          <section className="mb-12 space-y-6">
+            <div className="mb-9 space-y-1">
+              <h2 className="text-dark-700 sub-header">Identification and Verification</h2>
+            </div>
+          </section>
+          <CustomForm
+            fieldType={FieldType.SELECT}
+            control={form.control}
+            name="identificationType"
+            label="Identification Type"
+            placeholder="Select an Identification Type"
+          >
+            {IdentificationTypes.map((type) => (
+              <div className="flex cursor-pointer">
+                <SelectItem key={type} value={type}>
+                
+                {type}
+              </SelectItem>
+              </div>
+              
+            ))}
+          </CustomForm>
+          <CustomForm
+              fieldType={FieldType.INPUT}
+              control={form.control}
+              name="identificationNumber"
+              label="Identification Document Number"
+              placeholder="1272837"
+            />
+            <CustomForm
+              fieldType={FieldType.SKELETON}
+              control={form.control}
+              name="identificationDocument"
+              label="Scanned Copy of Identification Document"
+              renderSkeleton={(field) => (
+                <FormControl>
+                  
+                </FormControl>
+              )}
+            />
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
       </Form>
