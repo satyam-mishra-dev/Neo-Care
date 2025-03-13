@@ -19,7 +19,7 @@ import Image from "next/image";
 
 // Ensure User type is imported if not already defined
 import { User } from "@/types"; // Adjust path as needed
-import FileUploader from "../ui/FileUploader";
+import {FileUploader} from "../ui/FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const [isLoading, setIsLoading] = useState(false);
