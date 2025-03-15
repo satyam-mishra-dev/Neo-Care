@@ -278,6 +278,12 @@ const RegisterForm = ({ user }: { user: User }) => {
               </FormControl>
             )}
           />
+          <CustomForm
+            fieldType={FieldType.CHECKBOX}
+            control={form.control}
+            name="termsAndConditions"
+            label="I agree to the Terms and Conditions"
+          />
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
       </Form>

@@ -5,6 +5,8 @@ import Image from "next/image"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import {Textarea} from "./textarea"
+import { Checkbox } from "@/components/ui/checkbox"
+import { E164Number } from "libphonenumber-js";
 import {
   FormControl,
   FormField,
@@ -115,6 +117,17 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
             </FormControl>
 
           );
+          case FieldType.CHECKBOX:
+            return(
+              <FormControl>
+                <Checkbox
+                checked={field.value}
+                onChange={field.onChange}
+                label={props.label}
+                />
+              </FormControl>
+            );
+
     }
 
 }
