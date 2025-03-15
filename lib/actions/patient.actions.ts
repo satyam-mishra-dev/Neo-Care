@@ -25,3 +25,5 @@ export const getUser = async (userId:string)=>{
         console.log(err)
     }
 }
+export const registerUser = async ({identificationDocument,...patient}:RegisterUserParams)=>{
+    tr
