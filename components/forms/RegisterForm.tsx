@@ -12,17 +12,18 @@ import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { FieldType } from "./Patientform";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { genderOptions, Doctors,IdentificationTypes } from "@/constants/index";
+import { genderOptions, Doctors, IdentificationTypes } from "@/constants/index";
 import { Label } from "@radix-ui/react-label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
 
 // Ensure User type is imported if not already defined
 import { User } from "@/types"; // Adjust path as needed
-import {FileUploader} from "../ui/FileUploader";
+import  FileUploader  from "../ui/FileUploader";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [files, setFiles] = useState<File[]>([]);
   const router = useRouter();
 
   const form = useForm<z.infer<typeof formValidation>>({
@@ -254,38 +255,33 @@ const RegisterForm = ({ user }: { user: User }) => {
             placeholder="Select an Identification Type"
           >
             {IdentificationTypes.map((type) => (
-              <div className="flex cursor-pointer">
-                <SelectItem key={type} value={type}>
-                
+              <SelectItem key={type} value={type}>
                 {type}
               </SelectItem>
-              </div>
-              
             ))}
           </CustomForm>
           <CustomForm
-              fieldType={FieldType.INPUT}
-              control={form.control}
-              name="identificationNumber"
-              label="Identification Document Number"
-              placeholder="1272837"
-            />
-            <CustomForm
-              fieldType={FieldType.SKELETON}
-              control={form.control}
-              name="identificationDocument"
-              label="Scanned Copy of Identification Document"
-              renderSkeleton={(field) => (
-                <FormControl>
-                  <FileUploader/>
-                </FormControl>
-              )}
-            />
+            fieldType={FieldType.INPUT}
+            control={form.control}
+            name="identificationNumber"
+            label="Identification Document Number"
+            placeholder="1272837"
+          />
+          <CustomForm
+            fieldType={FieldType.SKELETON}
+            control={form.control}
+            name="identificationDocument"
+            label="Scanned Copy of Identification Document"
+            renderSkeleton={(field) => (
+              <FormControl>
+                <FileUploader files={files} onchange={setFiles} />
+              </FormControl>
+            )}
+          />
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
       </Form>
     </div>
-    
   );
 };
 
