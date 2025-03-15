@@ -7,7 +7,7 @@ import { Form, FormControl } from "@/components/ui/form";
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { useState } from "react";
-import {UserFormValidation} from "@/lib/Validation";
+import {PatientFormValidation} from "@/lib/Validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { FieldType } from "./Patientform";
@@ -26,8 +26,8 @@ const RegisterForm = ({ user }: { user: User }) => {
   const [files, setFiles] = useState<File[]>([]);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof UserFormValidation>>({
-    resolver: zodResolver(UserFormValidation),
+  const form = useForm<z.infer<typeof PatientFormValidation>>({
+    resolver: zodResolver(PatientFormValidation),
     defaultValues: {
       name: "",
       email: "",
@@ -35,7 +35,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof UserFormValidation>) {
+  async function onSubmit(values: z.infer<typeof PatientFormValidation>) {
     console.log("Submitting form:", values); // ✅ Debugging step
     setIsLoading(true);
 
