@@ -6,8 +6,8 @@ import {getUser} from "@/lib/actions/patient.actions"
 const Register = async ({params:{userId}}:SearchParamProps) =>{
     const user= await getUser(userId)
     return (<div className ="flex h-screen max-h-screen">
-        <section className ="remove-scrollbar container my-auto">
-          <div className="sub-container max-w-[496px]">
+        <section className ="remove-scrollbar container ">
+          <div className="sub-container max-w-[860px] flex-1 flex-col py-12">
             <Image 
             src= "/assets/icons/logo-full.svg"
             height={1000}
@@ -17,12 +17,8 @@ const Register = async ({params:{userId}}:SearchParamProps) =>{
             />
             <RegisterForm user={user}/>
             <div className="text-14-regular">
-              <p className ="justify-items-end text-dark-600 xl:text-left">© 2025 NeoCare</p>
-              <div className="my-0 mx-5">
-              <Link href="/?admin=true" className="text-green-500 xl:text-right">
-                Admin
-              </Link>
-              </div>
+              <p className ="justify-items-end text-dark-600 xl:text-left copyright py-12">© 2025 NeoCare</p>
+              
             </div>
           </div>
         </section>
@@ -31,7 +27,7 @@ const Register = async ({params:{userId}}:SearchParamProps) =>{
       height={1000}
       width={1000}
       alt="patient"
-      className="side-img w-full sm:max-w-[390px] md:max-w-[50%]"
+      className="side-img  max-w-[450PX]"
     />
     
         </div>

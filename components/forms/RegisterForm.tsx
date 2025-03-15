@@ -7,7 +7,7 @@ import { Form, FormControl } from "@/components/ui/form";
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton";
 import { useState } from "react";
-import formValidation from "@/lib/Validation";
+import {UserFormValidation} from "@/lib/Validation";
 import { useRouter } from "next/navigation";
 import { createUser } from "@/lib/actions/patient.actions";
 import { FieldType } from "./Patientform";
@@ -26,8 +26,8 @@ const RegisterForm = ({ user }: { user: User }) => {
   const [files, setFiles] = useState<File[]>([]);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof formValidation>>({
-    resolver: zodResolver(formValidation),
+  const form = useForm<z.infer<typeof UserFormValidation>>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
       name: "",
       email: "",
@@ -35,7 +35,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     },
   });
 
-  async function onSubmit(values: z.infer<typeof formValidation>) {
+  async function onSubmit(values: z.infer<typeof UserFormValidation>) {
     console.log("Submitting form:", values); // ✅ Debugging step
     setIsLoading(true);
 
@@ -281,8 +281,20 @@ const RegisterForm = ({ user }: { user: User }) => {
           <CustomForm
             fieldType={FieldType.CHECKBOX}
             control={form.control}
-            name="termsAndConditions"
-            label="I agree to the Terms and Conditions"
+            name="privacyConsent"
+            label="I agree to the Privacy Policy and Terms & Conditions"
+          />
+          <CustomForm
+            fieldType={FieldType.CHECKBOX}
+            control={form.control}
+            name="disclosureConsent"
+            label="I agree to disclose my medical information"
+          />
+          <CustomForm
+            fieldType={FieldType.CHECKBOX}
+            control={form.control}
+            name="treatmentConsent"
+            label="I consent to treatment"
           />
           <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
         </form>
