@@ -35,13 +35,13 @@ export const registerUser = async ({identificationDocument,...patient}:RegisterU
             )
             file = await storage.createFile(BUCKET_ID!,ID.unique(),inputFile); 
         }
-        const newawait databases.createDocument(
-            DATABASE_ID,PATIENT_COLLECTION_ID,ID.unique(),{
+        const newPatient =await databases.createDocument(
+            DATABASE_ID!,PATIENT_COLLECTION_ID!,ID.unique(),{
                 identificationDocumentId:file?.$id || null,
                 identificationDocumentUrl:`${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
                 ...patient
             }
-        )
+        );
         return parseStringify(patient);
 
     }catch(err){

@@ -9,10 +9,10 @@ import SubmitButton from "@/components/ui/SubmitButton";
 import { useState } from "react";
 import {PatientFormValidation} from "@/lib/Validation";
 import { useRouter } from "next/navigation";
-import { createUser } from "@/lib/actions/patient.actions";
+import { createUser, registerUser } from "@/lib/actions/patient.actions";
 import { FieldType } from "./Patientform";
 import { RadioGroup, RadioGroupItem } from "@radix-ui/react-radio-group";
-import { genderOptions, Doctors, IdentificationTypes } from "@/constants/index";
+import { genderOptions, Doctors, IdentificationTypes, PatientFormDefaultValues } from "@/constants/index";
 import { Label } from "@radix-ui/react-label";
 import { SelectItem } from "../ui/select";
 import Image from "next/image";
@@ -20,6 +20,7 @@ import Image from "next/image";
 // Ensure User type is imported if not already defined
 import { User } from "@/types"; // Adjust path as needed
 import  FileUploader  from "../ui/FileUploader";
+import { register } from "module";
 
 const RegisterForm = ({ user }: { user: User }) => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,6 +30,7 @@ const RegisterForm = ({ user }: { user: User }) => {
   const form = useForm<z.infer<typeof PatientFormValidation>>({
     resolver: zodResolver(PatientFormValidation),
     defaultValues: {
+      ...PatientFormDefaultValues,
       name: "",
       email: "",
       phone: "",
@@ -39,14 +41,27 @@ const RegisterForm = ({ user }: { user: User }) => {
     console.log("Submitting form:", values); // ✅ Debugging step
     setIsLoading(true);
 
-    try {
-      const user = await createUser(values);
-      console.log("User created:", user); // ✅ Debugging step
-
-      if (user) {
-        router.push(`/patients/${user.$id}/register`);
+    
+      let formData;
+      if(values.identificationDocument && values.identificationDocument.length > 0){
+        const blobFile = new Blob([values.identificationDocument[0]], { type: values.identificationDocument[0].type });
+        formData = new FormData();
+        formData.append("blobFile", blobFile);
+        formData.append("fileName", values.identificationDocument[0].name);
       }
-    } catch (err) {
+      try {
+        const patientData={
+          ...values,
+          userId: user.$id,
+          birthDate:new Date(values.birthDate),
+          identificationDocument:formData
+        }
+        const patient =await registerUser(patientData);
+        if(patient){
+          router.push(`/patients/${user.$id}/new-appointment`);
+        }
+    } 
+    catch (err) {
       console.error("Error creating user:", err);
     } finally {
       setIsLoading(false);
