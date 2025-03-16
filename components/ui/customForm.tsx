@@ -27,6 +27,10 @@ interface CustomProps {
   iconSrc?: string;
   iconAlt?: string;
   disabled?: boolean;
+  showTimeSelect?: boolean;
+  dateFormat?: string;
+  renderSkeleton?: (field: any) => JSX.Element | null;
+  children?: React.ReactNode;
 }
 const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
     const {fieldType, iconSrc ,iconAlt ,placeholder,showTimeSelect,dateFormat,renderSkeleton} =props;
@@ -113,22 +117,25 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
               <Textarea
               placeholder={placeholder}
               className="shad-textArea"
-              disabled={props.disabled}/>
+              disabled={props.disabled}
+              {...field} // Ensure field props are spread here
+              />
             </FormControl>
 
           );
-          case FieldType.CHECKBOX:
-            return(
-              <FormControl>
-                <div className="flex items-center gap-4">
-                  <Checkbox 
-                  id ={props.name}
-                  checked={field.value}
-                  onChange={field.onChange} />
-                  <FormLabel htmlFor={props.name} className="checkbox-label">{props.label}</FormLabel>
-                </div>
-              </FormControl>
-            );
+        case FieldType.CHECKBOX:
+          return(
+            <FormControl>
+              <div className="flex items-center gap-4">
+                <Checkbox 
+                  id={props.name}
+                  checked={field.value || false} // Ensure field value is handled correctly
+                  onCheckedChange={(checked) => field.onChange(checked)} // Use onCheckedChange for Radix UI Checkbox
+                />
+                <FormLabel htmlFor={props.name} className="checkbox-label">{props.label}</FormLabel>
+              </div>
+            </FormControl>
+          );
 
     }
 
