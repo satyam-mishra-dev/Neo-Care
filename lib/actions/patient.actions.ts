@@ -64,10 +64,6 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
             identificationDocumentUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`;
         }
 
-        if (!identificationDocumentUrl) {
-            throw new Error("Missing required attribute 'identificationDocumentUrl'");
-        }
-
         const newPatient = await databases.createDocument(
             DATABASE_ID!,
             PATIENT_COLLECTION_ID!,
