@@ -3,6 +3,7 @@
 import { Query, ID, InputFile } from "node-appwrite";
 import { BUCKET_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_COLLECTION_ID, PROJECT_ID, storage, users } from "../appwrite.config";
 import { parseStringify } from "../utils"; // Ensure this type exists
+import { parse } from "path";
 
 export const createUser = async (user: CreateUserParams) => {
     try {
@@ -17,26 +18,23 @@ export const createUser = async (user: CreateUserParams) => {
         }
     }
 };
-
-export const getUser = async (userId: string) => {
-    try {
+export const getUser = async (userId:string)=>{
+    try{
         const user = await users.get(userId);
         return parseStringify(user);
-    } catch (err) {
-        console.log(err);
+    }catch(err){
+        console.log(err)
     }
-};
-
+}
 export const registerUser = async ({ identificationDocument, ...patient }: RegisterUserParams) => {
     try {
         let file = null;
-        let identificationDocumentUrl = null;
 
         if (identificationDocument) {
             console.log("Received identificationDocument:", identificationDocument);
 
-            const blobFile = identificationDocument.get("blobFile");
-            const fileName = identificationDocument.get("fileName");
+            const blobFile = identificationDocument?.get("blobFile");
+            const fileName = identificationDocument?.get("fileName");
 
             if (!blobFile || !(blobFile instanceof Blob)) {
                 console.error("Invalid file blob:", blobFile);
@@ -60,8 +58,6 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
             if (!file || !file.$id) {
                 throw new Error("File upload failed, received invalid response: " + JSON.stringify(file));
             }
-
-            identificationDocumentUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`;
         }
 
         const newPatient = await databases.createDocument(
@@ -70,7 +66,9 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
             ID.unique(),
             {
                 identificationDocumentId: file?.$id || null,
-                identificationDocumentUrl,
+                identificationDocumentUrl: file
+                    ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`
+                    : null,
                 ...patient,
             }
         );
@@ -82,3 +80,4 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
         throw err;
     }
 };
+
