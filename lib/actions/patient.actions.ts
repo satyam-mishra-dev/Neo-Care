@@ -62,10 +62,9 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
             }
 
             identificationDocumentUrl = `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`;
-            console.log("Identification Document URL:", identificationDocumentUrl);
         }
 
-        if (identificationDocument && !identificationDocumentUrl) {
+        if (!identificationDocumentUrl) {
             throw new Error("Missing required attribute 'identificationDocumentUrl'");
         }
 
