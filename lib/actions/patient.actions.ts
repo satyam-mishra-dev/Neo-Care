@@ -26,33 +26,24 @@ export const getUser = async (userId:string)=>{
         console.log(err)
     }
 }
-export const registerUser = async ({ identificationDocument, ...patient }: RegisterUserParams) => {
+export const registerUser = async ({identificationDocument, ...patient}: RegisterUserParams) => {
     try {
-        let file = null;
-
+        let file;
         if (identificationDocument) {
             console.log("Received identificationDocument:", identificationDocument);
+            console.log("Blob File:", identificationDocument?.get("blobFile"));
+            console.log("File Name:", identificationDocument?.get("fileName"));
 
-            const blobFile = identificationDocument?.get("blobFile");
-            const fileName = identificationDocument?.get("fileName");
-
-            if (!blobFile || !(blobFile instanceof Blob)) {
-                console.error("Invalid file blob:", blobFile);
-                throw new Error("Invalid file: The uploaded file is missing or incorrect.");
-            }
-
-            console.log("Blob File:", blobFile);
-            console.log("File Name:", fileName);
-
-            // Creating Appwrite InputFile
-            const inputFile = InputFile.fromBlob(blobFile, fileName);
+            const inputFile = InputFile.fromBlob(
+                identificationDocument?.get('blobFile') as Blob,
+                identificationDocument?.get('fileName') as string,
+            );
 
             try {
                 file = await storage.createFile(BUCKET_ID!, ID.unique(), inputFile);
                 console.log("File uploaded successfully:", file);
             } catch (uploadError) {
                 console.error("File upload error:", uploadError);
-                throw new Error("File upload failed");
             }
 
             if (!file || !file.$id) {
@@ -67,17 +58,14 @@ export const registerUser = async ({ identificationDocument, ...patient }: Regis
             {
                 identificationDocumentId: file?.$id || null,
                 identificationDocumentUrl: file
-                    ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.$id}/view?project=${PROJECT_ID}`
+                    ? `${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file.id}/view?project=${PROJECT_ID}`
                     : null,
                 ...patient,
             }
         );
 
-        console.log("New patient registered:", newPatient);
         return parseStringify(newPatient);
     } catch (err) {
         console.error("Error registering user:", err);
-        throw err;
     }
 };
-
