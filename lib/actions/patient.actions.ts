@@ -30,14 +30,14 @@ export const registerUser = async ({identificationDocument,...patient}:RegisterU
     try{
         let file;
         if (identificationDocument) {
-            const inputFile = InputFile.fromBlob(
+            const inputFile = InputFile.fromBuffer(
                 identificationDocument?.get('blobFile') as Blob,
                 identificationDocument?.get('fileName') as string,
             )
             file = await storage.createFile(BUCKET_ID!,ID.unique(),inputFile); 
         }
         console.log({
-            identificationDocumentId:file?.$id || null,
+            identificationDocumentId: file?.$id || null,
                 identificationDocumentUrl:`${ENDPOINT}/storage/buckets/${BUCKET_ID}/files/${file?.$id}/view?project=${PROJECT_ID}`,
                 ...patient
         });
@@ -48,7 +48,7 @@ export const registerUser = async ({identificationDocument,...patient}:RegisterU
                 ...patient
             } 
         );
-        return parseStringify(patient);
+        return parseStringify(newPatient);
 
     }catch(err){
         console.log(err)

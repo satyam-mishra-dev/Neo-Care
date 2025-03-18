@@ -311,7 +311,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             name="treatmentConsent"
             label="I consent to treatment"
           />
-          <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+          <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
         </form>
       </Form>
     </div>
