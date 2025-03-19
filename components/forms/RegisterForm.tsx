@@ -121,7 +121,8 @@ const RegisterForm = ({ user }: { user: User }) => {
             fieldType={FieldType.INPUT}
             control={form.control}
             name="name"
-            placeholder="John Doe"
+            placeholder="Satyam Mishra"
+            label="Full Name"
             iconSrc="/assets/icons/user.svg"
             iconAlt="user"
           />
@@ -133,7 +134,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="email"
               label="Email address"
-              placeholder="johndoe@gmail.com"
+              placeholder="satyamhere8@gmail.com"
               iconSrc="/assets/icons/email.svg"
               iconAlt="email"
             />
@@ -143,7 +144,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="phone"
               label="Phone Number"
-              placeholder="(555) 123-4567"
+              placeholder="+91 2389320092"
             />
           </div>
 
@@ -189,7 +190,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="address"
               label="Address"
-              placeholder="14 street, New york, NY - 5101"
+              placeholder="23rd Street, New York"
             />
 
             <CustomForm
@@ -216,7 +217,7 @@ const RegisterForm = ({ user }: { user: User }) => {
               control={form.control}
               name="emergencyContactNumber"
               label="Emergency contact number"
-              placeholder="(555) 123-4567"
+              placeholder="+91 2389320092"
             />
           </div>
         </section>
