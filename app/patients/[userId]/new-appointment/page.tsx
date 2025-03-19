@@ -1,26 +1,32 @@
-import React from "react";
-import Image from "next/image"
-import Link from "next/link"
-import RegisterForm from "@/components/forms/RegisterForm"
-import {getUser} from "@/lib/actions/patient.actions"
-const newAppointment = async ({params:{userId}}:SearchParamProps) =>{
-    const user= await getUser(userId)
-    return (
-    <div className ="flex h-screen max-h-screen">
-        <section className ="remove-scrollbar container ">
-          <div className="sub-container max-w-[860px] flex-1 flex-col py-12">
-            <Image 
-            src= "/assets/icons/logo-full.svg"
-            height={1000}
-            width ={1000}
-            alt ="patient"
-            className="mb-12 h-10 w-fit"
-            />
+import Image from "next/image";
+import { Button }from "@/components/ui/button";
+import Link from "next/link";
+import Patientform from "@/components/forms/Patientform"
+export default function Home() {
+  return (<div className ="flex h-screen max-h-screen">
+    <section className ="remove-scrollbar container my-auto">
+      <div className="sub-container max-w-[860px]">
+        <Image 
+        src= "/assets/icons/logo-full.svg"
+        height={1000}
+        width ={1000}
+        alt ="patient"
+        className="mb-12 h-10 w-fit fixed top-20 left-10"
+        />
+        <div className="text-14-regular">
+          <p className ="justify-items-end text-dark-600 xl:text-left fixed bottom-10 left-10 ">© 2025 NeoCare</p>
           
         </div>
-        </section>
-    </div>
-      );
-}
+      </div>
+    </section>
+    <Image 
+  src="/assets/images/appointment-img.png"
+  height={1000}
+  width={1000}
+  alt="patient"
+  className="side-img w-full max-w-[40%] bg-bottom bg-cover"
+/>
 
-export default newAppointment
+    </div>
+  );
+}
