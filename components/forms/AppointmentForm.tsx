@@ -21,7 +21,7 @@ export enum FieldType {
     SKELETON = 'skeleton',
 }
 
-const AppointmentForm = () => {
+const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string,type:"create" | "cancel"}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -88,11 +88,11 @@ const AppointmentForm = () => {
         
 
         <CustomForm 
-          fieldType={FieldType.PHONE_INPUT}
+          fieldType={FieldType.DATE_PICKER}
           control={form.control}
           name="phone"  // ✅ Fixed name
-          label="Phone Number"
-          placeholder="+1-99933399393"
+          label="Expected appointment date"
+          placeholder="Select appointment date"
         />
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>

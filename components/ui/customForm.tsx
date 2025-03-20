@@ -83,11 +83,13 @@ const RenderField = ({field, props } : {field: any; props:CustomProps })=>{
               className="ml-12"
               />
               <FormControl>
+
                 <DatePicker selected={field.value} onChange={(date)=>field.onChange(date)}
                   dateFormat={dateFormat ?? 'MM/dd/yyyy'}
                   showTimeSelect={showTimeSelect ?? false}
                   timeInputLabel = "Time"
                   wrapperClassName="date-picker"
+                  placeholderText={placeholder}
                   />
               </FormControl>
             </div>

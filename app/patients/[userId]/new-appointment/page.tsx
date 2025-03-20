@@ -1,9 +1,11 @@
 import Image from "next/image";
 import { Button }from "@/components/ui/button";
 import Link from "next/link";
+import { getPatient } from "@/lib/actions/patient.actions";
 import Patientform from "@/components/forms/Patientform"
 import AppointmentForm from "@/components/forms/AppointmentForm";
-export default function Home() {
+export default async function NewAppointment({params:{userId}}:SearchParamProps) {
+  const patient = await getPatient(userId);
   return (<div className ="flex h-screen max-h-screen">
     <section className ="remove-scrollbar container my-auto">
       <div className="sub-container max-w-[860px]">
@@ -15,7 +17,11 @@ export default function Home() {
         className="mb-12 h-10 w-fit "
         />
         
-        <AppointmentForm/>
+        <AppointmentForm
+        type="create"
+        userId={userId}
+        patientId={patient.$id}
+        />
         <div className="text-14-regular">
           <p className ="justify-items-end text-dark-600 xl:text-left fixed bottom-10 left-10 ">© 2025 NeoCare</p>
           
