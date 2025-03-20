@@ -3,6 +3,7 @@ import Image from "next/image"
 import Link from "next/link"
 import RegisterForm from "@/components/forms/RegisterForm"
 import {getUser} from "@/lib/actions/patient.actions"
+import AppointmentForm from "@/components/forms/AppointmentForm";
 const Register = async ({params:{userId}}:SearchParamProps) =>{
     const user= await getUser(userId)
     return (<div className ="flex h-screen max-h-screen">
