@@ -12,7 +12,7 @@ export default function Home() {
         height={1000}
         width ={1000}
         alt ="patient"
-        className="mb-12 h-10 w-fit fixed top-20 left-10"
+        className="mb-12 h-10 w-fit "
         />
         
         <AppointmentForm/>
