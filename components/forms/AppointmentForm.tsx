@@ -59,7 +59,17 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
           <h1 className="header text-red-300">Hey there!! 👋</h1>
           <p className="text-dark-700">Request a new appointment in a few seconds</p>
         </section>
-
+        {type !== "cancel" &&(
+          <>
+          <CustomForm 
+            fieldType={FieldType.SELECT}
+            control={form.control}
+            name="specialization"
+            label="Specialization"
+            placeholder="Select Specialization"
+            /> 
+          </>
+        ) }
         <CustomForm
             fieldType={FieldType.SELECT}
             control={form.control}
