@@ -53,18 +53,7 @@ export const getUser = async (userId: string) => {
     );
   }
 };
-export const  getPatient = async (userId: string) => {
-  try {
-    const user = await users.get(userId);
 
-    return parseStringify(user);
-  } catch (error) {
-    console.error(
-      "An error occurred while retrieving the user details:",
-      error
-    );
-  }
-};
 
 // REGISTER PATIENT
 export const registerPatient = async ({

@@ -23,7 +23,7 @@ export enum FieldType {
     SKELETON = 'skeleton',
 }
 
-const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string,type:"create" | "cancel"}) => {
+const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string,type:"create" | "cancel"|"schedule"}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
@@ -61,6 +61,8 @@ switch (type) {
     case "cancel":
       buttonLabel = "Cancel Appointment";
       break;
+    case "schedule":
+      buttonLabel = "Schedule Appointment";
     default:
       break; 
   }
@@ -126,6 +128,7 @@ switch (type) {
           placeholder="Select appointment date"
         />
           </>
+        )}
           {type === "cancel" && (
             <>
             
