@@ -10,7 +10,9 @@ import { useState } from "react";
 import {UserFormValidation} from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
-
+import Image from "next/image"
+import {SelectItem} from "@/components/ui/select"
+import {Doctors} from "@/constants"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -64,10 +66,25 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
           <CustomForm 
             fieldType={FieldType.SELECT}
             control={form.control}
-            name="specialization"
-            label="Specialization"
-            placeholder="Select Specialization"
-            /> 
+            name="primaryPhysiscian"
+            label="Doctor"
+            placeholder="Select a doctor"
+            >
+              {Doctors.map((doctor, i) => (
+              <SelectItem key={doctor.name + i} value={doctor.name}>
+                <div className="flex cursor-pointer items-center gap-2">
+                  <Image
+                    src={doctor.image}
+                    width={32}
+                    height={32}
+                    alt="doctor"
+                    className="rounded-full border border-dark-500"
+                  />
+                  <p>{doctor.name}</p>
+                </div>
+              </SelectItem>
+            ))}
+            </CustomForm>
           </>
         ) }
         <CustomForm
