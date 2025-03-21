@@ -7,7 +7,7 @@ import { Form } from "@/components/ui/form"
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton"
 import { useState } from "react";
-import {UserFormValidation} from "@/lib/Validation"
+import {CreateAppointmentSchema, UserFormValidation} from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import Image from "next/image"
@@ -73,6 +73,7 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
         
       }
     }
+    const appointment = await CreateAppointmentSchema(appointmentData);
     } catch (err) {
       console.error("Error creating user:", err);
     } finally {
