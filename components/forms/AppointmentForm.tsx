@@ -28,26 +28,51 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
 
-  const form = useForm<z.infer<typeof UserFormValidation>>({
-    resolver: zodResolver(UserFormValidation),
+  const form = useForm<z.infer<typeof AppointmentFormValidation>>({
+    resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
       name: "",
       email: "",
       phone: "",
+      schedule : new Date(),
+      reason : "",
+      note: "",
+      cancellationReason: "",
     },
   });
 
   async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     console.log("Submitting form:", values); // ✅ Debugging step
     setIsLoading(true);
+    let status;
+    switch (type) {
+      case "cancel":
+        status = "cancelled";
+        break;
+      case "schedule":
+        status = "scheduled";
+        break;
+      default:
+      status = "pending";
+      break;
+    }
 
     try {
       const user = await createUser(values);
       console.log("User created:", user); // ✅ Debugging step
 
-      if (user) {
-        router.push(`/patients/${user.$id}/register`);
+      if (type === 'create' && patientId) {
+        const appointmentData = {
+          userId: user.$id,
+          patient: patientId,
+          primaryPhysiscian: values.primaryPhysiscian,
+          schedule:new Date(values.schedule),
+          reason: values.reason,  
+          note: values.note,
+          status: status as Status,
+        
       }
+    }
     } catch (err) {
       console.error("Error creating user:", err);
     } finally {
@@ -111,7 +136,7 @@ switch (type) {
         <CustomForm 
           fieldType={FieldType.TEXTAREA}
           control={form.control}
-          name="additionalInfo"
+          name="note"
           label="Additional Notes"
           placeholder="Any requests or additional information"
           iconAlt="additionalInfo"
@@ -136,7 +161,7 @@ switch (type) {
             <CustomForm
               fieldType={FieldType.INPUT}
               control={form.control}
-              name="reason"
+              name="cancellationReason"
               label="Reason for cancellation"
               placeholder="Reason for cancelling the appointment"
             />
