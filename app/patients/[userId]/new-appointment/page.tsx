@@ -23,7 +23,7 @@ export default async function NewAppointment({params:{userId}}:SearchParamProps)
         patientId={patient.$id}
         />
         <div className="text-14-regular">
-          <p className ="justify-items-end text-dark-600 xl:text-left fixed bottom-10 left-10 ">© 2025 NeoCare</p>
+          <p className ="copyright mt-3 py-6">© 2025 NeoCare</p>
           
         </div>
         

@@ -13,6 +13,7 @@ import { createUser } from "@/lib/actions/patient.actions"
 import Image from "next/image"
 import {SelectItem} from "@/components/ui/select"
 import {Doctors} from "@/constants"
+import {AppointmentFormValidation} from "@/lib/Validation"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -36,7 +37,7 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
     },
   });
 
-  async function onSubmit(values: z.infer<typeof UserFormValidation>) {
+  async function onSubmit(values: z.infer<typeof AppointmentFormValidation>) {
     console.log("Submitting form:", values); // ✅ Debugging step
     setIsLoading(true);
 
