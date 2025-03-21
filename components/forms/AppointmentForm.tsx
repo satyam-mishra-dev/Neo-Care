@@ -53,7 +53,17 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
       setIsLoading(false);
     }
   }
-
+  let buttonLabel;
+switch (type) {
+    case "create":
+      buttonLabel = "Create Appointment";
+      break;
+    case "cancel":
+      buttonLabel = "Cancel Appointment";
+      break;
+    default:
+      break; 
+  }
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
@@ -85,20 +95,12 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
               </SelectItem>
             ))}
             </CustomForm>
-          </>
-        ) }
-        <CustomForm
-            fieldType={FieldType.SELECT}
-            control={form.control}
-            name="primaryPhysician"
-            label="Doctor"
-            placeholder="Select Doctor"
-          />
-        <div className="flex flex-col gap-6 xl:flex-row">
+
+            <div className="flex flex-col gap-6 xl:flex-row">
         <CustomForm 
           fieldType={FieldType.TEXTAREA}
           control={form.control}
-          name="email"
+          name="reason"
           label="Reason for Appointment"
           placeholder="Routine checkup, etc."
           iconAlt="reason"
@@ -106,23 +108,49 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
         <CustomForm 
           fieldType={FieldType.TEXTAREA}
           control={form.control}
-          name="email"
+          name="additionalInfo"
           label="Additional Notes"
           placeholder="Any requests or additional information"
           iconAlt="additionalInfo"
+          
         />
-        </div>
         
-
+        </div>
         <CustomForm 
           fieldType={FieldType.DATE_PICKER}
           control={form.control}
-          name="phone"  // ✅ Fixed name
+          name="schedule"  // ✅ Fixed name
           label="Expected appointment date"
+          showTimeSelect
+          dateFormat="MMMM d, yyyy - h:mm aa"
           placeholder="Select appointment date"
         />
+          </>
+          {type === "cancel" && (
+            <>
+            
+            <CustomForm
+              fieldType={FieldType.INPUT}
+              control={form.control}
+              name="reason"
+              label="Reason for cancellation"
+              placeholder="Reason for cancelling the appointment"
+            />
 
-        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+</>
+          )}
+        
+        
+
+        
+
+          <SubmitButton
+          isLoading={isLoading}
+          className={`${type === 'cancel' ? 'shad-danger-btn' : 'shad-primary-btn'} w-full`}
+        >
+          {buttonLabel}
+        </SubmitButton>
+        
       </form>
     </Form>
   );
