@@ -116,21 +116,21 @@ export function getAppointmentSchema(type: string) {
       return ScheduleAppointmentSchema;
   }
 }
-export const AppointmentFormValidation = z.object({
-  name: z.string().min(1, "Name is required"),
-  email: z.string().email("Invalid email format"),
-  phone: z.string().min(10, "Phone number must be at least 10 digits"),
-  schedule: z.date(),
-  reason: z.string().min(1, "Reason for appointment is required"),
-  note: z.string().optional(),
-  cancellationReason: z.string().optional(),
-  primaryPhysiscian: z.string().min(1, "Doctor selection is required"),
-}).refine((data) => {
-  if (data.cancellationReason && (!data.name || !data.email || !data.phone)) {
-    return false;
-  }
-  return true;
-}, {
-  message: "Name, email, and phone are required for cancellations",
-  path: ["cancellationReason"],
-});
+// export const AppointmentFormValidation = z.object({
+//   name: z.string().min(1, "Name is required"),
+//   email: z.string().email("Invalid email format"),
+//   phone: z.string().min(10, "Phone number must be at least 10 digits"),
+//   schedule: z.date(),
+//   reason: z.string().min(1, "Reason for appointment is required"),
+//   note: z.string().optional(),
+//   cancellationReason: z.string().optional(),
+//   primaryPhysiscian: z.string().min(1, "Doctor selection is required"),
+// }).refine((data) => {
+//   if (data.cancellationReason && (!data.name || !data.email || !data.phone)) {
+//     return false;
+//   }
+//   return true;
+// }, {
+//   message: "Name, email, and phone are required for cancellations",
+//   path: ["cancellationReason"],
+// });

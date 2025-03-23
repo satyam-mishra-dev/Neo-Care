@@ -1,3 +1,6 @@
+"use server"
+
+
 import { APPOINTMENT_COLLECTION_ID, databases ,DATABASE_ID} from "../appwrite.config";
 import { ID } from "node-appwrite";
 import { parseStringify } from "../utils";

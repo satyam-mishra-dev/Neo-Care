@@ -74,6 +74,10 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
         
       }
       const appointment = await CreateAppointment(appointmentData);
+      if(appointment){
+        form.reset();
+        router.push(`/appointments/${appointment.$id}`);
+      }
     }
     } catch (err) {
       console.error("Error creating user:", err);
