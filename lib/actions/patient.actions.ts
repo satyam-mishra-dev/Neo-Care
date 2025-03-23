@@ -1,8 +1,6 @@
 "use server";
 
-<<<<<<< HEAD
 import { ID, InputFile, Query } from "node-appwrite";
-=======
 import { Query, ID, InputFile } from "node-appwrite";
 import { BUCKET_ID, DATABASE_ID, databases, ENDPOINT, PATIENT_COLLECTION_ID, PROJECT_ID, storage, users } from "../appwrite.config";
 import { parseStringify } from "../utils";
@@ -39,7 +37,6 @@ type RegisterUserParams = {
   privacyConsent: boolean;
   userId: string;
 };
->>>>>>> 55ee4d979383e247e3c9ace67522aac3e3b4671e
 
 import {
   BUCKET_ID,
