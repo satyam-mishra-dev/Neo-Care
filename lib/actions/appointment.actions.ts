@@ -1,4 +1,7 @@
-import { APPOINTMENT_COLLECTION_ID, databases } from "../appwrite.config";
+import { APPOINTMENT_COLLECTION_ID, databases ,DATABASE_ID} from "../appwrite.config";
+import { ID } from "node-appwrite";
+import { parseStringify } from "../utils";
+
 
 export const CreateAppointment = async (appointment: CreateAppointmentParams) => {
     try{
@@ -6,7 +9,9 @@ export const CreateAppointment = async (appointment: CreateAppointmentParams) =>
             DATABASE_ID,
             APPOINTMENT_COLLECTION_ID,
             ID.unique(),
+            appointment
         )
+        return parseStringify(newAppointment);
     }catch(err){
         console.error("Error creating appointment:", err);
     }

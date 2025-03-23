@@ -14,6 +14,7 @@ import Image from "next/image"
 import {SelectItem} from "@/components/ui/select"
 import {Doctors} from "@/constants"
 import {AppointmentFormValidation} from "@/lib/Validation"
+import { CreateAppointment } from "@/lib/actions/appointment.actions"
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -65,15 +66,15 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
         const appointmentData = {
           userId: user.$id,
           patient: patientId,
-          primaryPhysiscian: values.primaryPhysiscian,
+          primaryPhysician: values.primaryPhysiscian,
           schedule:new Date(values.schedule),
           reason: values.reason,  
           note: values.note,
           status: status as Status,
         
       }
+      const appointment = await CreateAppointment(appointmentData);
     }
-    const appointment = await CreateAppointmentSchema(appointmentData);
     } catch (err) {
       console.error("Error creating user:", err);
     } finally {
