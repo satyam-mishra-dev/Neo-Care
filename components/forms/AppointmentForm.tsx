@@ -7,13 +7,12 @@ import { Form } from "@/components/ui/form"
 import CustomForm from "@/components/ui/CustomForm";
 import SubmitButton from "@/components/ui/SubmitButton"
 import { useState } from "react";
-import {CreateAppointmentSchema, UserFormValidation} from "@/lib/Validation"
+import {CreateAppointmentSchema, getAppointmentSchema, UserFormValidation} from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
 import Image from "next/image"
 import {SelectItem} from "@/components/ui/select"
 import {Doctors} from "@/constants"
-import {AppointmentFormValidation} from "@/lib/Validation"
 import { CreateAppointment } from "@/lib/actions/appointment.actions"
 export enum FieldType {
     INPUT = 'input',
@@ -28,7 +27,7 @@ export enum FieldType {
 const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string,type:"create" | "cancel"|"schedule"}) => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
-
+  const AppointmentFormValidation = getAppointmentSchema(type);
   const form = useForm<z.infer<typeof AppointmentFormValidation>>({
     resolver: zodResolver(AppointmentFormValidation),
     defaultValues: {
@@ -76,7 +75,7 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
       const appointment = await CreateAppointment(appointmentData);
       if(appointment){
         form.reset();
-        router.push(`/appointments/${appointment.$id}`);
+        router.push(`/patients/${user.$id}/new-appointment/success?appointmentId=${appointment.$id}`);
       }
     }
     } catch (err) {
