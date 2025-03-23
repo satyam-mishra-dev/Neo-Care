@@ -360,6 +360,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             name="treatmentConsent"
             label="I consent to receive treatment for my health condition."
           />
+<<<<<<< HEAD
 
           <CustomForm
             fieldType={FieldType.CHECKBOX}
@@ -381,6 +382,12 @@ const RegisterForm = ({ user }: { user: User }) => {
         <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
       </form>
     </Form>
+=======
+          <SubmitButton isLoading={isLoading}>Submit and Continue</SubmitButton>
+        </form>
+      </Form>
+    </div>
+>>>>>>> 55ee4d979383e247e3c9ace67522aac3e3b4671e
   );
 };
 
