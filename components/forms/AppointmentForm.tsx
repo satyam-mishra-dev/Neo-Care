@@ -53,39 +53,44 @@ const AppointmentForm = ({userId,patientId,type}:{userId:string,patientId:string
         status = "scheduled";
         break;
       default:
-      status = "pending";
-      break;
+        status = "pending";
+        break;
     }
 
     try {
+      console.log("Creating user..."); // ✅ Debugging step
       const user = await createUser(values);
       console.log("User created:", user); // ✅ Debugging step
 
       if (type === 'create' && patientId) {
+        console.log("Creating appointment..."); // ✅ Debugging step
         const appointmentData = {
           userId: user.$id,
           patient: patientId,
-          primaryPhysician: values.primaryPhysiscian,
-          schedule:new Date(values.schedule),
-          reason: values.reason,  
+          primaryPhysician: values.primaryPhysician,
+          schedule: new Date(values.schedule),
+          reason: values.reason,
           note: values.note,
           status: status as Status,
-        
+        };
+        const appointment = await CreateAppointment(appointmentData);
+        console.log("Appointment created:", appointment); // ✅ Debugging step
+        if (appointment) {
+          form.reset();
+          router.push(`/patients/${user.$id}/new-appointment/success?appointmentId=${appointment.$id}`);
+        } else {
+          console.error("Failed to create appointment."); // ✅ Debugging step
+        }
       }
-      const appointment = await CreateAppointment(appointmentData);
-      if(appointment){
-        form.reset();
-        router.push(`/patients/${user.$id}/new-appointment/success?appointmentId=${appointment.$id}`);
-      }
-    }
     } catch (err) {
-      console.error("Error creating user:", err);
+      console.error("Error in onSubmit:", err); // ✅ Improved error logging
     } finally {
       setIsLoading(false);
     }
   }
+
   let buttonLabel;
-switch (type) {
+  switch (type) {
     case "create":
       buttonLabel = "Create Appointment";
       break;
@@ -94,8 +99,9 @@ switch (type) {
       break;
     case "schedule":
       buttonLabel = "Schedule Appointment";
+      break; // ✅ Added missing break
     default:
-      break; 
+      buttonLabel = "Submit"; // ✅ Added default case
   }
   return (
     <Form {...form}>
@@ -109,7 +115,7 @@ switch (type) {
           <CustomForm 
             fieldType={FieldType.SELECT}
             control={form.control}
-            name="primaryPhysiscian"
+            name="primaryPhysician"
             label="Doctor"
             placeholder="Select a doctor"
             >
