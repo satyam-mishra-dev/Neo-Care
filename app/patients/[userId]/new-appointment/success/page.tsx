@@ -2,12 +2,21 @@ import React from 'react';
 import Image from 'next/image';
 import { getAppointment } from '@/lib/actions/appointment.actions';
 import { Doctors } from '@/constants';
+import { format } from "date-fns"; // ✅ Add date formatting
 
+interface SearchParamProps {
+  params: { userId: string };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-const Success =async  ({params:{userId},searchParams}:SearchParamProps) => {
-  const appointmentId =(searchParams?.appointmentId as string | undefined);
+const Success = async ({ params: { userId }, searchParams }: SearchParamProps) => {
+  const appointmentId = (searchParams?.appointmentId as string | undefined);
   const appointment = await getAppointment(appointmentId!); 
   const doctor = Doctors.find((doc) => doc.name === appointment.primaryPhysician);
+  const formattedDate = appointment?.schedule ? 
+    format(new Date(appointment.schedule), "MMMM d, yyyy 'at' h:mm aa") : 
+    "Date not set";
+
   return (
     <>
         <section className="flex flex-col items-center gap-4">
@@ -49,12 +58,12 @@ const Success =async  ({params:{userId},searchParams}:SearchParamProps) => {
             height={20}
             width={20}
             alt='calendar'
-
             />
-            <p></p>
+            <p>{formattedDate}</p>
             </div>
       </section>
     </>
   );
 }
+
 export default Success;

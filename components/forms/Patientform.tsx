@@ -10,7 +10,7 @@ import { useState } from "react";
 import {UserFormValidation} from "@/lib/Validation"
 import { useRouter } from "next/navigation"
 import { createUser } from "@/lib/actions/patient.actions"
-
+import { ToastContainer, toast } from 'react-toastify';
 export enum FieldType {
     INPUT = 'input',
     TEXTAREA = 'textarea',
@@ -20,7 +20,7 @@ export enum FieldType {
     SELECT = 'select',
     SKELETON = 'skeleton',
 }
-
+const notify = (message:string) => toast.error(message);
 const Patientform = () => {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -47,6 +47,8 @@ const Patientform = () => {
       }
     } catch (err) {
       console.error("Error creating user:", err);
+      notify("Error creating user!");
+      
     } finally {
       setIsLoading(false);
     }
@@ -89,6 +91,7 @@ const Patientform = () => {
         />
 
         <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
+        <ToastContainer/>
       </form>
     </Form>
   );
