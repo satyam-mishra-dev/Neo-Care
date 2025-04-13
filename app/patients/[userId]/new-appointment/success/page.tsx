@@ -35,7 +35,7 @@ const Success =async  ({params:{userId},searchParams}:SearchParamProps) => {
         </p>
         <div className='flex items-center gap-4'>
           <Image
-          src={doctor?.image}
+          src={doctor?.image!}
           height={100}
           width={100}  
           alt='doctor'

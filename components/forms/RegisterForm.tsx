@@ -95,7 +95,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     } catch (error) {
       console.log(error);
     }
-
+nvl
     setIsLoading(false);
   };
 
