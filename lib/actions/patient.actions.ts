@@ -141,3 +141,18 @@ export const getPatient = async (userId: string) => {
     throw error;
   }
 };
+
+// GET PATIENT BY ID
+export const getPatientById = async (userId: string) => {
+  try {
+    // Your database query logic here
+    // For now, return a mock patient
+    return {
+      $id: userId,
+      // other patient fields...
+    };
+  } catch (error) {
+    console.error('Error in getPatientById:', error);
+    return null;
+  }
+};
