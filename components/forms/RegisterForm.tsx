@@ -97,7 +97,7 @@ const RegisterForm = ({ user }: { user: User }) => {
     } catch (error) {
       console.log(error);
     }
-
+ndbskb
     setIsLoading(false);
   };
 
