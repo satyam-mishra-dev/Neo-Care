@@ -109,7 +109,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             <h1 className="header">Welcome 👋</h1>
             <p className="text-dark-700">Let us know more about yourself.</p>
           </section>
-
+<div>completed assets</div>
           <section className="space-y-6">
             <div className="mb-9 space-y-1">
               <h2 className="sub-header">Personal Information</h2>
