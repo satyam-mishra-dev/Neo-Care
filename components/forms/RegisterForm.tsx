@@ -125,7 +125,6 @@ const RegisterForm = ({ user }: { user: User }) => {
               iconSrc="/assets/icons/user.svg"
               iconAlt="user"
             />
-            <div>Indexed components</div>
 
             {/* EMAIL & PHONE */}
             <div className="flex flex-col gap-6 xl:flex-row">
