@@ -1,0 +1,8 @@
+.navbar ul {
+  display: flex;
+  gap: 2rem;
+  font-weight: bold;
+  margin: 0 24px;
+  justify-content: center;
+  margin-top: 15px;
+}
