@@ -1,0 +1,388 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ========================================== TAILWIND STYLES */
+@layer base {
+  /* Remove scrollbar */
+  .remove-scrollbar::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+    border-radius: 0px;
+  }
+
+  .remove-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .remove-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 0px;
+  }
+
+  .remove-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+
+  /* Prevent scrolling on appointment page */
+  body.appointment-page {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+  }
+
+  html.appointment-page {
+    overflow: hidden;
+  }
+
+  /* Ensure form elements have proper z-index */
+  .appointment-page .form-field {
+    position: relative;
+    z-index: 10;
+  }
+
+  .appointment-page .form-input {
+    position: relative;
+    z-index: 15;
+  }
+
+  .appointment-page .form-select {
+    position: relative;
+    z-index: 20;
+  }
+
+  .appointment-page .form-datepicker {
+    position: relative;
+    z-index: 25;
+  }
+
+  /* Phone Input Styles */
+  .PhoneInputInput {
+    @apply border-0 bg-transparent focus:outline-none text-gray-900 placeholder:text-gray-500 w-full h-14 px-3;
+  }
+  
+  /* Phone Input Flag Styles */
+  .PhoneInputCountry {
+    @apply h-14 w-14 flex items-center justify-center px-2;
+  }
+  
+  .PhoneInputCountryIcon {
+    @apply w-8 h-6 mx-1;
+  }
+  
+  .PhoneInputCountrySelectArrow {
+    @apply w-4 h-4 ml-1;
+  }
+  
+  /* Phone Input Container */
+  .PhoneInput {
+    @apply flex items-center;
+  }
+
+  .PhoneInputInput::placeholder {
+    @apply text-gray-500;
+  }
+
+  /* Date Picker Styles */
+  .date-picker {
+    @apply w-full;
+  }
+
+  .react-datepicker-wrapper.date-picker {
+    @apply w-full;
+  }
+
+  .react-datepicker,
+  .react-datepicker__header {
+    @apply bg-white border-gray-200 rounded-lg;
+  }
+
+  .react-datepicker__current-month,
+  .react-datepicker-time__header {
+    @apply text-gray-900 font-semibold;
+  }
+
+  .react-datepicker__triangle {
+    @apply border-gray-200;
+  }
+
+  .react-datepicker__time-list-item:hover {
+    @apply bg-teal-100;
+  }
+
+  .react-datepicker__input-container input {
+    @apply border-0 bg-transparent focus:outline-none text-gray-900 placeholder:text-gray-500 w-full h-12 px-3;
+  }
+
+  .react-datepicker__day--selected {
+    @apply bg-teal-600 text-white hover:bg-teal-700;
+  }
+
+  .react-datepicker__time-list-item--selected {
+    @apply bg-teal-600 text-white;
+  }
+
+  .react-datepicker__time-container {
+    @apply border-gray-200;
+  }
+
+  .react-datepicker__time-list-item {
+    @apply text-gray-900;
+  }
+}
+
+@layer utilities {
+  /* ===== UTILITIES */
+  .sidebar {
+    @apply remove-scrollbar w-full max-w-72 flex-col overflow-auto bg-white border-r border-gray-200 px-7 py-10;
+  }
+
+  .left-sidebar {
+    @apply hidden lg:flex;
+  }
+
+  .right-sidebar {
+    @apply hidden xl:flex;
+  }
+
+  .clip-text {
+    @apply bg-clip-text text-transparent;
+  }
+
+  .bg-image {
+    @apply bg-gradient-to-br from-teal-50 to-mint-50 bg-cover bg-no-repeat;
+  }
+
+  .header {
+    @apply text-32-bold md:text-36-bold;
+  }
+
+  .sub-header {
+    @apply text-18-bold md:text-24-bold;
+  }
+
+  .container {
+    @apply relative flex-1 overflow-y-auto px-[5%];
+  }
+
+  .sub-container {
+    @apply mx-auto flex size-full flex-col py-10;
+  }
+
+  .side-img {
+    @apply hidden h-full object-cover md:block;
+  }
+
+  .copyright {
+    @apply text-14-regular justify-items-end text-center text-gray-600 xl:text-left;
+  }
+
+  /* Floating Animation */
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  /* ==== SUCCESS */
+  .success-img {
+    @apply m-auto flex flex-1 flex-col items-center justify-between gap-10 py-10;
+  }
+
+  .request-details {
+    @apply flex w-full flex-col items-center gap-8 border-y-2 border-gray-200 py-8 md:w-fit md:flex-row;
+  }
+
+  /* ===== ADMIN */
+  .admin-header {
+    @apply sticky top-3 z-20 mx-3 flex items-center justify-between rounded-2xl bg-white px-[5%] py-5 shadow-lg xl:px-12 border border-gray-200;
+  }
+
+  .admin-main {
+    @apply flex flex-col items-center space-y-6 px-[5%] pb-12 xl:space-y-12 xl:px-12;
+  }
+
+  .admin-stat {
+    @apply flex w-full flex-col justify-between gap-5 sm:flex-row xl:gap-10;
+  }
+
+  /* ==== FORM */
+  .radio-group {
+    @apply flex h-full flex-1 items-center gap-2 rounded-lg border border-dashed border-gray-300 bg-gray-50 p-3;
+  }
+
+  .checkbox-label {
+    @apply cursor-pointer text-sm font-medium text-gray-700 peer-disabled:cursor-not-allowed peer-disabled:opacity-70 md:leading-none;
+  }
+
+  /* ==== File Upload */
+  .file-upload {
+    @apply text-12-regular flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-gray-300 bg-gray-50 p-5 hover:border-teal-400 hover:bg-teal-50 transition-colors;
+  }
+
+  .file-upload_label {
+    @apply flex flex-col justify-center gap-2 text-center text-gray-600;
+  }
+
+  /* ==== Stat Card */
+  .stat-card {
+    @apply flex flex-1 flex-col gap-6 rounded-2xl bg-white p-6 shadow-lg border border-gray-200;
+  }
+
+  /* ==== Status Badge */
+  .status-badge {
+    @apply flex w-fit items-center gap-2 rounded-full px-4 py-2;
+  }
+
+  /* Data Table */
+  .data-table {
+    @apply z-10 w-full overflow-hidden rounded-lg border border-gray-200 shadow-lg bg-white;
+  }
+
+  .table-actions {
+    @apply flex w-full items-center justify-between space-x-2 p-4;
+  }
+
+  /* ===== ALIGNMENTS */
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+
+  /* ===== TYPOGRAPHY */
+  .text-36-bold {
+    @apply text-[36px] leading-[40px] font-bold;
+  }
+
+  .text-24-bold {
+    @apply text-[24px] leading-[28px] font-bold;
+  }
+
+  .text-32-bold {
+    @apply text-[32px] leading-[36px] font-bold;
+  }
+
+  .text-18-bold {
+    @apply text-[18px] leading-[24px] font-bold;
+  }
+
+  .text-16-semibold {
+    @apply text-[16px] leading-[20px] font-semibold;
+  }
+
+  .text-16-regular {
+    @apply text-[16px] leading-[20px] font-normal;
+  }
+
+  .text-14-medium {
+    @apply text-[14px] leading-[18px] font-medium;
+  }
+
+  .text-14-regular {
+    @apply text-[14px] leading-[18px] font-normal;
+  }
+
+  .text-12-regular {
+    @apply text-[12px] leading-[16px] font-normal;
+  }
+
+  .text-12-semibold {
+    @apply text-[12px] leading-[16px] font-semibold;
+  }
+
+  /* =====  SHADCN OVERRIDES */
+  .shad-primary-btn {
+    @apply bg-teal-600 hover:bg-teal-700 text-white !important;
+  }
+
+  .shad-danger-btn {
+    @apply bg-red-600 hover:bg-red-700 text-white !important;
+  }
+
+  .shad-gray-btn {
+    @apply border border-gray-300 cursor-pointer bg-gray-50 text-gray-700 hover:bg-gray-100 !important;
+  }
+
+  .shad-input-label {
+    @apply text-14-medium text-gray-700 !important;
+  }
+
+  .shad-input {
+    @apply border-gray-200 bg-white text-gray-900 placeholder:text-gray-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 !important;
+  }
+
+  .shad-input-icon {
+    @apply text-gray-400 !important;
+  }
+
+  .shad-textArea {
+    @apply border-gray-200 bg-white text-gray-900 placeholder:text-gray-500 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 !important;
+  }
+
+  .shad-combobox-item {
+    @apply text-gray-900 hover:bg-teal-50 !important;
+  }
+
+  .shad-combobox-trigger {
+    @apply border-gray-200 bg-white text-gray-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 !important;
+  }
+
+  .shad-select-trigger {
+    @apply border-gray-200 bg-white text-gray-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 !important;
+  }
+
+  .shad-select-content {
+    @apply bg-white border-gray-200 !important;
+  }
+
+  .shad-dialog {
+    @apply bg-white border-gray-200 !important;
+  }
+
+  .shad-dialog button {
+    @apply bg-teal-600 hover:bg-teal-700 text-white !important;
+  }
+
+  .shad-error {
+    @apply text-red-500 !important;
+  }
+
+  .shad-table {
+    @apply bg-white border-gray-200 !important;
+  }
+
+  .shad-table-row-header {
+    @apply bg-gray-50 text-gray-700 !important;
+  }
+
+  .shad-table-row {
+    @apply border-gray-200 text-gray-900 hover:bg-gray-50 !important;
+  }
+
+  .shad-otp {
+    @apply border-gray-200 bg-white !important;
+  }
+
+  .shad-otp-slot {
+    @apply border-gray-200 bg-white text-gray-900 focus:border-teal-500 focus:ring-2 focus:ring-teal-200 !important;
+  }
+
+  .shad-alert-dialog {
+    @apply bg-white border-gray-200 !important;
+  }
+
+  .shad-sheet-content button {
+    @apply bg-teal-600 hover:bg-teal-700 text-white !important;
+  }
+}
