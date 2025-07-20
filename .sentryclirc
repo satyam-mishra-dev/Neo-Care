@@ -1,0 +1,7 @@
+[defaults]
+url=https://sentry.io/
+org=techserv
+project=neo-care
+
+[auth]
+token=${SENTRY_AUTH_TOKEN} 
