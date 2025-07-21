@@ -2,8 +2,7 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
-import { X, User, Mail, Phone, Calendar } from "lucide-react";
-
+import { User, Calendar, X } from "lucide-react";
 import { PatientForm } from "./forms/PatientForm";
 
 interface FlippingModalProps {
@@ -126,7 +125,7 @@ export const FlippingModal = ({ children }: FlippingModalProps) => {
                     Welcome to Neo Care
                   </h3>
                   <p className="text-gray-600 max-w-md">
-                    Your health is our priority. Let's get you started with the best medical care.
+                    Your health is our priority. Let&apos;s get you started with the best medical care.
                   </p>
                   <div className="flex items-center justify-center space-x-4 mt-6">
                     <div className="flex items-center space-x-2 text-teal-600">

@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import React, { useEffect, useRef } from "react";
 
 export const HeroAnimations = () => {
   const heroRef = useRef<HTMLDivElement>(null);

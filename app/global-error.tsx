@@ -31,7 +31,7 @@ export default function GlobalError({
             Something went wrong!
           </h1>
           <p style={{ color: '#6b7280', marginBottom: '20px' }}>
-            We're sorry, but something unexpected happened. Please try refreshing the page.
+            We&apos;re sorry, but something unexpected happened. Please try refreshing the page.
           </p>
           <button
             onClick={() => window.location.reload()}

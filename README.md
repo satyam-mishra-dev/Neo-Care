@@ -14,7 +14,7 @@
   <h3 align="center">🏥 Neo Care - Modern Healthcare Management System</h3>
   <p align="center">A comprehensive healthcare patient management application with advanced UI/UX, real-time notifications, and seamless appointment scheduling.</p>
 
-  <div align="center">
+   <div align="center">
     <a href="https://github.com/satyam-mishra-dev/Neo-Care/stargazers">
       <img src="https://img.shields.io/github/stars/satyam-mishra-dev/Neo-Care?style=social" alt="Stars">
     </a>
@@ -27,7 +27,7 @@
     <a href="https://github.com/satyam-mishra-dev/Neo-Care/blob/master/LICENSE">
       <img src="https://img.shields.io/github/license/satyam-mishra-dev/Neo-Care" alt="License">
     </a>
-  </div>
+    </div>
 </div>
 
 ## 📋 Table of Contents
@@ -130,14 +130,14 @@
 ### Installation
 
 1. **Clone the repository**
-   ```bash
+```bash
    git clone https://github.com/satyam-mishra-dev/Neo-Care.git
    cd Neo-Care
-   ```
+```
 
 2. **Install dependencies**
-   ```bash
-   npm install
+```bash
+npm install
    # or
    yarn install
    ```

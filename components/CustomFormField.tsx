@@ -1,12 +1,12 @@
 /* eslint-disable no-unused-vars */
 import { E164Number } from "libphonenumber-js/core";
+import { User, Mail, Calendar } from "lucide-react";
 import Image from "next/image";
 import ReactDatePicker from "react-datepicker";
 import { Control } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
-import { User, Mail, Calendar } from "lucide-react";
-
 import { Checkbox } from "./ui/checkbox";
+
 import {
   FormControl,
   FormField,
