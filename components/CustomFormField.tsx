@@ -48,10 +48,10 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
       return (
         <div className="flex rounded-lg border border-gray-200 bg-white focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-200 transition-all">
           {props.iconAlt && (
-            <div className="flex items-center justify-center w-12 h-12 text-gray-400">
-              {props.iconAlt === "user" && <User className="w-5 h-5" />}
-              {props.iconAlt === "email" && <Mail className="w-5 h-5" />}
-              {props.iconAlt === "calendar" && <Calendar className="w-5 h-5" />}
+            <div className="flex items-center justify-center size-12 text-gray-400">
+              {props.iconAlt === "user" && <User className="size-5" />}
+              {props.iconAlt === "email" && <Mail className="size-5" />}
+              {props.iconAlt === "calendar" && <Calendar className="size-5" />}
             </div>
           )}
           <FormControl>
@@ -107,8 +107,8 @@ const RenderInput = ({ field, props }: { field: any; props: CustomProps }) => {
     case FormFieldType.DATE_PICKER:
       return (
         <div className="flex rounded-lg border border-gray-200 bg-white focus-within:border-teal-500 focus-within:ring-2 focus-within:ring-teal-200 transition-all">
-          <div className="flex items-center justify-center w-12 h-12 text-gray-400">
-            <Calendar className="w-5 h-5" />
+          <div className="flex items-center justify-center size-12 text-gray-400">
+            <Calendar className="size-5" />
           </div>
           <FormControl>
             <ReactDatePicker

@@ -17,7 +17,7 @@ const SubmitButton = ({ isLoading, className, children }: ButtonProps) => {
     >
       {isLoading ? (
         <div className="flex items-center gap-3">
-          <Loader2 className="w-5 h-5 animate-spin" />
+          <Loader2 className="mr-2 size-5 animate-spin" />
           Processing...
         </div>
       ) : (

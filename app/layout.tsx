@@ -27,10 +27,10 @@ export default function RootLayout({
           <div className="absolute bottom-20 right-20 size-28 bg-mint-200/20 rounded-full animate-float" style={{ animationDelay: "6s" }}></div>
           
           {/* Small floating dots */}
-          <div className="absolute top-1/3 left-1/6 size-2 bg-teal-300/40 rounded-full animate-float"></div>
+          <div className="absolute top-1/3 left-[16.6667%] size-2 bg-teal-300/40 rounded-full animate-float"></div>
           <div className="absolute top-1/4 right-1/4 size-1.5 bg-mint-300/40 rounded-full animate-float" style={{ animationDelay: "1s" }}></div>
           <div className="absolute bottom-1/3 left-1/3 size-1 bg-teal-400/30 rounded-full animate-float" style={{ animationDelay: "3s" }}></div>
-          <div className="absolute bottom-1/4 right-1/6 size-2.5 bg-mint-400/30 rounded-full animate-float" style={{ animationDelay: "5s" }}></div>
+          <div className="absolute bottom-1/4 right-[16.6667%] size-2.5 bg-mint-400/30 rounded-full animate-float" style={{ animationDelay: "5s" }}></div>
         </div>
         
         {children}

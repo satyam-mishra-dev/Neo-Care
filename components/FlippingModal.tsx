@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
 import { gsap } from "gsap";
 import { User, Calendar, X } from "lucide-react";
+import React, { useState, useRef, useEffect } from "react";
+
 import { PatientForm } from "./forms/PatientForm";
 
 interface FlippingModalProps {
@@ -97,25 +98,24 @@ export const FlippingModal = ({ children }: FlippingModalProps) => {
         <>
           {/* Backdrop */}
           <div
-            className="fixed inset-0 bg-black bg-opacity-50 z-50 backdrop-blur-sm"
+            className="fixed inset-0 size-full bg-black/50 flex items-center justify-center z-50 transition-opacity duration-300"
             onClick={closeModal}
           />
           
           {/* Modal Container - Centered */}
           <div
             ref={modalRef}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 size-full flex items-center justify-center p-4"
             style={{ perspective: "1200px" }}
           >
             <div
               ref={modalContentRef}
-              className="relative w-[60%] h-[50%] transform-gpu"
+              className="relative size-full transform-gpu"
               style={{ transformStyle: "preserve-3d" }}
             >
               {/* Front side - Initial View */}
               <div
-                className="absolute inset-0 w-full h-full bg-white rounded-2xl shadow-2xl flex items-center justify-center backface-hidden"
-                style={{ backfaceVisibility: "hidden" }}
+                className="absolute inset-0 size-full bg-white rounded-2xl shadow-2xl flex items-center justify-center"
               >
                 <div className="text-center space-y-6 p-8">
                   <div className="w-20 h-20 bg-teal-100 rounded-full flex items-center justify-center mx-auto animate-pulse">
@@ -142,9 +142,8 @@ export const FlippingModal = ({ children }: FlippingModalProps) => {
 
               {/* Back side - Form */}
               <div
-                className="absolute inset-0 w-full h-full bg-white rounded-2xl shadow-2xl backface-hidden"
+                className="absolute inset-0 size-full bg-white rounded-2xl shadow-2xl"
                 style={{ 
-                  backfaceVisibility: "hidden",
                   transform: "rotateY(180deg)"
                 }}
               >
